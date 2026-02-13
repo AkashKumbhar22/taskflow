@@ -1,4 +1,3 @@
-//Creating Service Interface to define contracts(what methods service must have)
 package com.taskflow.service;
 
 import com.taskflow.dto.TaskRequest;
@@ -25,4 +24,6 @@ public interface TaskService {
     List<TaskResponse> getTasksByStatus(String status);
     
     List<TaskResponse> getTasksByPriority(String priority);
+    
+    List<TaskResponse> searchTasksByName(String keyword);
 }

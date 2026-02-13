@@ -1,76 +1,93 @@
 package com.taskflow.controller;
 
-import com.taskflow.entity.Task;
-import com.taskflow.repository.TaskRepository;
+import com.taskflow.dto.TaskRequest;
+import com.taskflow.dto.TaskResponse;
+import com.taskflow.service.TaskService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Optional;
 
 @RestController
-@RequestMapping("/tasks")
+@RequestMapping("/api/tasks")
 public class TaskController {
 
     @Autowired
-    private TaskRepository taskRepository;
+    private TaskService taskService;
 
-    // CREATE: POST /tasks
+    // CREATE: POST /api/tasks
     @PostMapping
-    public ResponseEntity<Task> createTask(@RequestBody Task task) {
-        Task savedTask = taskRepository.save(task);
-        return new ResponseEntity<>(savedTask, HttpStatus.CREATED);
+    public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest request) {
+        TaskResponse response = taskService.createTask(request);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
     }
 
-    // READ ALL: GET /tasks
+    // READ ALL: GET /api/tasks
     @GetMapping
-    public ResponseEntity<List<Task>> getAllTasks() {
-        List<Task> tasks = taskRepository.findAll();
-        return new ResponseEntity<>(tasks, HttpStatus.OK);
+    public ResponseEntity<List<TaskResponse>> getAllTasks() {
+        List<TaskResponse> tasks = taskService.getAllTasks();
+        return ResponseEntity.ok(tasks);
     }
 
-    // READ ONE: GET /tasks/{id}
+    // READ ALL PAGINATED: GET /api/tasks/paginated?page=0&size=10
+    @GetMapping("/paginated")
+    public ResponseEntity<Page<TaskResponse>> getAllTasksPaginated(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size,
+            @RequestParam(defaultValue = "id") String sortBy,
+            @RequestParam(defaultValue = "ASC") String direction) {
+        
+        Sort sort = direction.equalsIgnoreCase("ASC") 
+                    ? Sort.by(sortBy).ascending() 
+                    : Sort.by(sortBy).descending();
+        
+        Pageable pageable = PageRequest.of(page, size, sort);
+        Page<TaskResponse> taskPage = taskService.getAllTasksPaginated(pageable);
+        
+        return ResponseEntity.ok(taskPage);
+    }
+
+    // READ ONE: GET /api/tasks/{id}
     @GetMapping("/{id}")
-    public ResponseEntity<Task> getTaskById(@PathVariable Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        
-        if (task.isPresent()) {
-            return new ResponseEntity<>(task.get(), HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id) {
+        TaskResponse task = taskService.getTaskById(id);
+        return ResponseEntity.ok(task);
     }
 
-    // UPDATE: PUT /tasks/{id}
+    // READ BY STATUS: GET /api/tasks/status/{status}
+    @GetMapping("/status/{status}")
+    public ResponseEntity<List<TaskResponse>> getTasksByStatus(@PathVariable String status) {
+        List<TaskResponse> tasks = taskService.getTasksByStatus(status);
+        return ResponseEntity.ok(tasks);
+    }
+
+    // READ BY PRIORITY: GET /api/tasks/priority/{priority}
+    @GetMapping("/priority/{priority}")
+    public ResponseEntity<List<TaskResponse>> getTasksByPriority(@PathVariable String priority) {
+        List<TaskResponse> tasks = taskService.getTasksByPriority(priority);
+        return ResponseEntity.ok(tasks);
+    }
+
+    // UPDATE: PUT /api/tasks/{id}
     @PutMapping("/{id}")
-    public ResponseEntity<Task> updateTask(@PathVariable Long id, @RequestBody Task taskDetails) {
-        Optional<Task> taskOptional = taskRepository.findById(id);
-        
-        if (taskOptional.isPresent()) {
-            Task task = taskOptional.get();
-            task.setName(taskDetails.getName());
-            task.setStatus(taskDetails.getStatus());
-            task.setPriority(taskDetails.getPriority());
-            
-            Task updatedTask = taskRepository.save(task);
-            return new ResponseEntity<>(updatedTask, HttpStatus.OK);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+    public ResponseEntity<TaskResponse> updateTask(
+            @PathVariable Long id,
+            @Valid @RequestBody TaskRequest request) {
+        TaskResponse updated = taskService.updateTask(id, request);
+        return ResponseEntity.ok(updated);
     }
 
-    // DELETE: DELETE /tasks/{id}
+    // DELETE: DELETE /api/tasks/{id}
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
-        Optional<Task> task = taskRepository.findById(id);
-        
-        if (task.isPresent()) {
-            taskRepository.deleteById(id);
-            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } else {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
+        taskService.deleteTask(id);
+        return ResponseEntity.noContent().build();
     }
 }

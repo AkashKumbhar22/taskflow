@@ -12,32 +12,47 @@ import java.util.List;
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
     
-    // Method name query - Spring generates SQL automatically
+    // Find by status
     List<Task> findByStatus(String status);
     
+    // Find by priority
     List<Task> findByPriority(String priority);
     
+    // Find by status AND priority
     List<Task> findByStatusAndPriority(String status, String priority);
     
+    // Find by date range
     List<Task> findByCreatedAtBetween(LocalDateTime start, LocalDateTime end);
     
+    // Search by name (case-insensitive, partial match)
     List<Task> findByNameContainingIgnoreCase(String keyword);
     
-    // Custom JPQL query
-    @Query("SELECT t FROM Task t WHERE t.status = :status ORDER BY t.priority DESC")
-    List<Task> findTasksByStatusOrderedByPriority(@Param("status") String status);
+    // Find by status, ordered by priority
+    List<Task> findByStatusOrderByPriorityDesc(String status);
     
-    // Native SQL query
-    @Query(value = "SELECT * FROM tasks WHERE priority = ?1 AND created_at > NOW() - INTERVAL '7 days'", 
+    // Find tasks by status with custom ordering
+    @Query("SELECT t FROM Task t WHERE t.status = :status ORDER BY t.createdAt DESC")
+    List<Task> findRecentTasksByStatus(@Param("status") String status);
+    
+    // Find high priority tasks
+    @Query("SELECT t FROM Task t WHERE t.priority = 'HIGH' AND t.status = 'QUEUED'")
+    List<Task> findHighPriorityQueuedTasks();
+    
+    // Count tasks by status
+    @Query("SELECT COUNT(t) FROM Task t WHERE t.status = :status")
+    long countTasksByStatus(@Param("status") String status);
+        
+    // Find tasks created in last N days
+    @Query(value = "SELECT * FROM tasks WHERE created_at > NOW() - INTERVAL ':days days'", 
            nativeQuery = true)
-    List<Task> findRecentTasksByPriority(String priority);
+    List<Task> findTasksCreatedInLastDays(@Param("days") int days);
     
-    // Count query
-    long countByStatus(String status);
-    
-    // Exists query
+    // Check if task exists by name
     boolean existsByName(String name);
     
-    // Delete query
+    // Count by priority
+    long countByPriority(String priority);
+    
+    // Delete by status (bulk delete)
     void deleteByStatus(String status);
 }

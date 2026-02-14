@@ -11,7 +11,7 @@ import java.util.List;
 
 @Repository
 public interface TaskRepository extends JpaRepository<Task, Long> {
-    
+ 
     // Find by status
     List<Task> findByStatus(String status);
     
@@ -29,7 +29,7 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     
     // Find by status, ordered by priority
     List<Task> findByStatusOrderByPriorityDesc(String status);
-    
+  
     // Find tasks by status with custom ordering
     @Query("SELECT t FROM Task t WHERE t.status = :status ORDER BY t.createdAt DESC")
     List<Task> findRecentTasksByStatus(@Param("status") String status);
@@ -41,12 +41,12 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
     // Count tasks by status
     @Query("SELECT COUNT(t) FROM Task t WHERE t.status = :status")
     long countTasksByStatus(@Param("status") String status);
-        
+    
     // Find tasks created in last N days
     @Query(value = "SELECT * FROM tasks WHERE created_at > NOW() - INTERVAL ':days days'", 
            nativeQuery = true)
     List<Task> findTasksCreatedInLastDays(@Param("days") int days);
-    
+  
     // Check if task exists by name
     boolean existsByName(String name);
     

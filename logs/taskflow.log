@@ -1,9 +1,7 @@
-2026-02-23 22:20:31 [main] INFO  com.taskflow.DemoApplicationTests - Starting DemoApplicationTests using Java 17.0.12 with PID 15616 (started by HP in C:\Users\HP\Desktop\taskflow\taskflow)
-2026-02-23 22:20:31 [main] DEBUG com.taskflow.DemoApplicationTests - Running with Spring Boot v3.5.10, Spring v6.2.15
-2026-02-23 22:20:31 [main] INFO  com.taskflow.DemoApplicationTests - No active profile set, falling back to 1 default profile: "default"
-2026-02-23 22:20:35 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
-2026-02-23 22:20:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@290c266c
-2026-02-23 22:20:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
-2026-02-23 22:20:40 [main] INFO  com.taskflow.DemoApplicationTests - Started DemoApplicationTests in 9.221 seconds (process running for 11.204)
-2026-02-23 22:20:41 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
-2026-02-23 22:20:41 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-24 00:12:22 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - GET /api/tasks - Fetching all tasks
+2026-02-24 00:12:22 [http-nio-8080-exec-2] DEBUG c.taskflow.service.TaskServiceImpl - Fetching all tasks from database (cache miss)
+2026-02-24 00:12:22 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 19 tasks from database
+2026-02-24 00:12:22 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Caching all tasks with key: 'all'
+2026-02-24 00:12:29 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - GET /api/tasks - Fetching all tasks
+2026-02-24 00:17:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-24 00:17:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

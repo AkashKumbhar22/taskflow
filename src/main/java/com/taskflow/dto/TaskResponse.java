@@ -1,8 +1,11 @@
 package com.taskflow.dto;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
-public class TaskResponse {
+public class TaskResponse implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     private Long id;
     private String name;
@@ -15,8 +18,8 @@ public class TaskResponse {
     public TaskResponse() {
     }
 
-    public TaskResponse(Long id, String name, String status, String priority, 
-                       LocalDateTime createdAt, LocalDateTime updatedAt) {
+    public TaskResponse(Long id, String name, String status, String priority,
+                        LocalDateTime createdAt, LocalDateTime updatedAt) {
         this.id = id;
         this.name = name;
         this.status = status;

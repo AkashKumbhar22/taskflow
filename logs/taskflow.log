@@ -5,3 +5,28 @@
 2026-02-24 00:12:29 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - GET /api/tasks - Fetching all tasks
 2026-02-24 00:17:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2026-02-24 00:17:51 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-24 00:18:07 [main] INFO  com.taskflow.DemoApplication - Starting DemoApplication using Java 17.0.12 with PID 27820 (C:\Users\HP\Desktop\taskflow\taskflow\target\classes started by HP in C:\Users\HP\Desktop\taskflow\taskflow)
+2026-02-24 00:18:07 [main] DEBUG com.taskflow.DemoApplication - Running with Spring Boot v3.5.10, Spring v6.2.15
+2026-02-24 00:18:07 [main] INFO  com.taskflow.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-24 00:18:09 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-24 00:18:09 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-24 00:18:09 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-24 00:18:09 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-24 00:18:09 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-24 00:18:10 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@1f48fa72
+2026-02-24 00:18:10 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-24 00:18:14 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-24 00:18:14 [main] INFO  com.taskflow.DemoApplication - Started DemoApplication in 7.311 seconds (process running for 7.766)
+2026-02-24 00:18:26 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-24 00:18:26 [http-nio-8080-exec-1] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-24 00:18:27 [http-nio-8080-exec-1] DEBUG c.taskflow.service.TaskServiceImpl - Fetching task with ID: 17 (checking cache first)
+2026-02-24 00:18:27 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Task found in database: Send welcome email
+2026-02-24 00:18:27 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Caching task with key: 17
+2026-02-24 00:20:05 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-24 00:20:41 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-24 00:21:31 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-24 00:24:30 [http-nio-8080-exec-3] INFO  c.t.controller.CacheStatsController - GET /api/cache/stats - Fetching cache statistics
+2026-02-24 00:24:45 [http-nio-8080-exec-9] WARN  c.t.controller.CacheStatsController - DELETE /api/cache/clear - Clearing all cache
+2026-02-24 00:24:45 [http-nio-8080-exec-9] INFO  c.t.controller.CacheStatsController - Cleared 1 cache entries
+2026-02-24 00:31:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-24 00:31:22 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

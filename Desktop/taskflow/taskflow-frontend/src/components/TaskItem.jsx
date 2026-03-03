@@ -4,6 +4,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedName, setEditedName] = useState(task.name);
   const [editedPriority, setEditedPriority] = useState(task.priority);
+  const [editedStatus, setEditedStatus] = useState(task.status); // ✅ ADDED
   const [loading, setLoading] = useState(false);
 
   const getPriorityColor = (priority) => {
@@ -70,9 +71,10 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
 
     setLoading(true);
     try {
-      await onUpdate(task.id, { 
-        name: editedName.trim(), 
-        priority: editedPriority 
+      await onUpdate(task.id, {
+        name: editedName.trim(),
+        priority: editedPriority,
+        status: editedStatus, // ✅ ADDED
       });
       setIsEditing(false);
     } catch (error) {
@@ -86,6 +88,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
   const handleCancel = () => {
     setEditedName(task.name);
     setEditedPriority(task.priority);
+    setEditedStatus(task.status); // ✅ ADDED
     setIsEditing(false);
   };
 
@@ -115,10 +118,10 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
   };
 
   return (
-    <div className="bg-white rounded-lg shadow-md p-6 mb-4 hover:shadow-xl transition-shadow duration-200 border-l-4 border-purple-500">
+    <div className="bg-white relative rounded-lg shadow-md p-6 mb-4 hover:shadow-xl transition-shadow duration-200 border-l-4 border-purple-500">
       {isEditing ? (
-        // EDIT MODE
         <div className="space-y-4">
+          {/* Task Name */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Task Name
@@ -135,6 +138,7 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
             </p>
           </div>
 
+          {/* Priority */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
               Priority
@@ -151,23 +155,32 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
             </select>
           </div>
 
+          {/* ✅ Status (NEW) */}
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-2">
+              Status
+            </label>
+            <select
+              value={editedStatus}
+              onChange={(e) => setEditedStatus(e.target.value)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 outline-none"
+              disabled={loading}
+            >
+              <option value="QUEUED">⏳ Queued</option>
+              <option value="IN_PROGRESS">⚙️ In Progress</option>
+              <option value="COMPLETED">✅ Completed</option>
+              <option value="FAILED">❌ Failed</option>
+            </select>
+          </div>
+
+          {/* Buttons */}
           <div className="flex gap-2">
             <button
               onClick={handleSave}
               disabled={loading || editedName.trim().length < 3}
-              className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50 flex items-center justify-center"
+              className="flex-1 bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700 transition-colors disabled:opacity-50"
             >
-              {loading ? (
-                <>
-                  <svg className="animate-spin h-4 w-4 mr-2" viewBox="0 0 24 24">
-                    <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
-                    <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-                  </svg>
-                  Saving...
-                </>
-              ) : (
-                '✓ Save Changes'
-              )}
+              {loading ? 'Saving...' : '✓ Save Changes'}
             </button>
             <button
               onClick={handleCancel}
@@ -179,22 +192,23 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
           </div>
         </div>
       ) : (
-        // VIEW MODE
         <div>
-          {/* Header with Task Name and Actions */}
+          {/* Header */}
           <div className="flex items-start justify-between mb-4">
             <div className="flex-1">
               <div className="flex items-center mb-2">
                 <span className="text-2xl mr-2">📋</span>
-                <h3 className="text-xl font-semibold text-gray-800">{task.name}</h3>
+                <h3 className="text-xl font-semibold text-gray-800">
+                  {task.name}
+                </h3>
               </div>
-              
-              {/* Status and Priority Badges */}
+
               <div className="flex flex-wrap gap-2 mb-3">
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold ${getStatusColor(task.status)} flex items-center`}>
                   <span className="mr-1">{getStatusIcon(task.status)}</span>
                   {task.status.replace('_', ' ')}
                 </span>
+
                 <span className={`px-3 py-1 rounded-full text-xs font-semibold border ${getPriorityColor(task.priority)} flex items-center`}>
                   <span className="mr-1">{getPriorityIcon(task.priority)}</span>
                   {task.priority}
@@ -202,65 +216,49 @@ const TaskItem = ({ task, onUpdate, onDelete }) => {
               </div>
             </div>
 
-            {/* Action Buttons */}
             <div className="flex gap-2 ml-4">
               <button
                 onClick={() => setIsEditing(true)}
                 disabled={loading}
-                className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors disabled:opacity-50"
-                title="Edit Task"
+                className="bg-blue-500 text-white p-2 rounded-lg hover:bg-blue-600 transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
-                </svg>
+                ✏️
               </button>
               <button
                 onClick={handleDelete}
                 disabled={loading}
-                className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors disabled:opacity-50"
-                title="Delete Task"
+                className="bg-red-500 text-white p-2 rounded-lg hover:bg-red-600 transition-colors"
               >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                  <path fillRule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clipRule="evenodd" />
-                </svg>
+                🗑️
               </button>
             </div>
           </div>
 
-          {/* Task Details */}
-          <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-            <div className="grid grid-cols-2 gap-4 text-sm">
-              <div>
-                <p className="text-gray-500 font-medium">Task ID</p>
-                <p className="text-gray-800">#{task.id}</p>
-              </div>
-              <div>
-                <p className="text-gray-500 font-medium">Status</p>
-                <p className="text-gray-800">{task.status}</p>
-              </div>
-              <div>
-                <p className="text-gray-500 font-medium">Created At</p>
-                <p className="text-gray-800">{formatDate(task.createdAt)}</p>
-              </div>
-              <div>
-                <p className="text-gray-500 font-medium">Last Updated</p>
-                <p className="text-gray-800">{formatDate(task.updatedAt)}</p>
-              </div>
+          {/* Details */}
+          <div className="bg-gray-50 rounded-lg p-4 grid grid-cols-2 gap-4 text-sm">
+            <div>
+              <p className="text-gray-500 font-medium">Task ID</p>
+              <p className="text-gray-800">#{task.id}</p>
+            </div>
+            <div>
+              <p className="text-gray-500 font-medium">Status</p>
+              <p className="text-gray-800">{task.status}</p>
+            </div>
+            <div>
+              <p className="text-gray-500 font-medium">Created At</p>
+              <p className="text-gray-800">{formatDate(task.createdAt)}</p>
+            </div>
+            <div>
+              <p className="text-gray-500 font-medium">Last Updated</p>
+              <p className="text-gray-800">{formatDate(task.updatedAt)}</p>
             </div>
           </div>
         </div>
       )}
 
-      {/* Loading Overlay */}
       {loading && !isEditing && (
         <div className="absolute inset-0 bg-white bg-opacity-75 flex items-center justify-center rounded-lg">
-          <div className="text-center">
-            <svg className="animate-spin h-8 w-8 text-purple-600 mx-auto" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" fill="none"/>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"/>
-            </svg>
-            <p className="text-gray-600 mt-2">Processing...</p>
-          </div>
+          Processing...
         </div>
       )}
     </div>

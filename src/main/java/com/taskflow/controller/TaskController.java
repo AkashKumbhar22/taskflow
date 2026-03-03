@@ -28,7 +28,9 @@ public class TaskController {
 
     // CREATE
     @PostMapping
-    public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest request) {
+    public ResponseEntity<TaskResponse> createTask(
+            @Valid @RequestBody TaskRequest request) {
+
         logger.info("POST /api/tasks - Creating task: {}", request.getName());
         TaskResponse response = taskService.createTask(request);
         return new ResponseEntity<>(response, HttpStatus.CREATED);
@@ -37,6 +39,7 @@ public class TaskController {
     // READ ALL
     @GetMapping
     public ResponseEntity<List<TaskResponse>> getAllTasks() {
+
         logger.info("GET /api/tasks - Fetching all tasks");
         List<TaskResponse> tasks = taskService.getAllTasks();
         return ResponseEntity.ok(tasks);
@@ -49,26 +52,28 @@ public class TaskController {
             @RequestParam(defaultValue = "10") int size,
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "ASC") String direction) {
-        
-        logger.info("GET /api/tasks/paginated - Page: {}, Size: {}, SortBy: {}, Direction: {}", 
-                    page, size, sortBy, direction);
-        
-        Sort sort = direction.equalsIgnoreCase("ASC") 
-                    ? Sort.by(sortBy).ascending() 
-                    : Sort.by(sortBy).descending();
-        
+
+        logger.info("GET /api/tasks/paginated - Page: {}, Size: {}, SortBy: {}, Direction: {}",
+                page, size, sortBy, direction);
+
+        Sort sort = direction.equalsIgnoreCase("ASC")
+                ? Sort.by(sortBy).ascending()
+                : Sort.by(sortBy).descending();
+
         Pageable pageable = PageRequest.of(page, size, sort);
         Page<TaskResponse> taskPage = taskService.getAllTasksPaginated(pageable);
-        
-        logger.info("Returning {} tasks out of {} total", 
-                    taskPage.getNumberOfElements(), taskPage.getTotalElements());
-        
+
+        logger.info("Returning {} tasks out of {} total",
+                taskPage.getNumberOfElements(),
+                taskPage.getTotalElements());
+
         return ResponseEntity.ok(taskPage);
     }
 
     // READ ONE
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id) {
+
         logger.info("GET /api/tasks/{} - Fetching task", id);
         TaskResponse task = taskService.getTaskById(id);
         return ResponseEntity.ok(task);
@@ -76,7 +81,9 @@ public class TaskController {
 
     // READ BY STATUS
     @GetMapping("/status/{status}")
-    public ResponseEntity<List<TaskResponse>> getTasksByStatus(@PathVariable String status) {
+    public ResponseEntity<List<TaskResponse>> getTasksByStatus(
+            @PathVariable String status) {
+
         logger.info("GET /api/tasks/status/{} - Fetching tasks by status", status);
         List<TaskResponse> tasks = taskService.getTasksByStatus(status);
         return ResponseEntity.ok(tasks);
@@ -84,7 +91,9 @@ public class TaskController {
 
     // READ BY PRIORITY
     @GetMapping("/priority/{priority}")
-    public ResponseEntity<List<TaskResponse>> getTasksByPriority(@PathVariable String priority) {
+    public ResponseEntity<List<TaskResponse>> getTasksByPriority(
+            @PathVariable String priority) {
+
         logger.info("GET /api/tasks/priority/{} - Fetching tasks by priority", priority);
         List<TaskResponse> tasks = taskService.getTasksByPriority(priority);
         return ResponseEntity.ok(tasks);
@@ -92,7 +101,9 @@ public class TaskController {
 
     // SEARCH BY NAME
     @GetMapping("/search")
-    public ResponseEntity<List<TaskResponse>> searchTasks(@RequestParam String keyword) {
+    public ResponseEntity<List<TaskResponse>> searchTasks(
+            @RequestParam String keyword) {
+
         logger.info("GET /api/tasks/search?keyword={} - Searching tasks", keyword);
         List<TaskResponse> tasks = taskService.searchTasksByName(keyword);
         return ResponseEntity.ok(tasks);
@@ -102,15 +113,17 @@ public class TaskController {
     @PutMapping("/{id}")
     public ResponseEntity<TaskResponse> updateTask(
             @PathVariable Long id,
-            @Valid @RequestBody TaskRequest request) {
+            @Valid @RequestBody TaskRequest taskRequest) {
+
         logger.info("PUT /api/tasks/{} - Updating task", id);
-        TaskResponse updated = taskService.updateTask(id, request);
-        return ResponseEntity.ok(updated);
+        TaskResponse updatedTask = taskService.updateTask(id, taskRequest);
+        return ResponseEntity.ok(updatedTask);
     }
 
     // DELETE
     @DeleteMapping("/{id}")
     public ResponseEntity<Void> deleteTask(@PathVariable Long id) {
+
         logger.info("DELETE /api/tasks/{} - Deleting task", id);
         taskService.deleteTask(id);
         return ResponseEntity.noContent().build();

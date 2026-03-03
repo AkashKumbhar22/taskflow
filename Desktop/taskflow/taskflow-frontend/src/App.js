@@ -140,10 +140,27 @@ function App() {
 
   // Update task
   const handleUpdateTask = async (id, taskData) => {
-    await taskAPI.updateTask(id, taskData);
-    loadTasks(); // Reload all tasks after update
-  };
+  try {
+    setError('');
+    setLoading(true);
 
+    const response = await taskAPI.updateTask(id, taskData);
+
+    // Update task locally instead of full reload (faster UI)
+    const updatedTasks = tasks.map(task =>
+      task.id === id ? response.data : task
+    );
+
+    setTasks(updatedTasks);
+    calculateStats(updatedTasks);
+
+  } catch (err) {
+    console.error('Error updating task:', err);
+    setError('Failed to update task. Please try again.');
+  } finally {
+    setLoading(false);
+  }
+};
   // Delete task
   const handleDeleteTask = async (id) => {
     if (window.confirm('Are you sure you want to delete this task?')) {

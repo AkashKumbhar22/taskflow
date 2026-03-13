@@ -1,8 +1,5 @@
 import axios from "axios";
 
-// ================================
-// API CONFIGURATION
-// ================================
 
 // Backend URL from environment variable
 const API_BASE_URL =
@@ -11,9 +8,7 @@ const API_BASE_URL =
 const BACKEND_URL =
   process.env.REACT_APP_BACKEND_URL || "https://taskflow-t4tz.onrender.com";
 
-// ================================
-// AXIOS INSTANCE
-// ================================
+
 
 const api = axios.create({
   baseURL: API_BASE_URL,
@@ -23,9 +18,7 @@ const api = axios.create({
   timeout: 10000,
 });
 
-// ================================
-// REQUEST INTERCEPTOR
-// ================================
+
 
 api.interceptors.request.use(
   (config) => {

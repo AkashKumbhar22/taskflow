@@ -1,163 +1,136 @@
-import axios from 'axios';
+import axios from "axios";
 
-// Backend API base URL
-const API_BASE_URL = 'http://localhost:8080/api';
+// ================================
+// API CONFIGURATION
+// ================================
 
-// Create axios instance with default config
+// Backend URL from environment variable
+const API_BASE_URL =
+  process.env.REACT_APP_API_URL || "https://taskflow-t4tz.onrender.com/api";
+
+const BACKEND_URL =
+  process.env.REACT_APP_BACKEND_URL || "https://taskflow-t4tz.onrender.com";
+
+// ================================
+// AXIOS INSTANCE
+// ================================
+
 const api = axios.create({
   baseURL: API_BASE_URL,
   headers: {
-    'Content-Type': 'application/json',
+    "Content-Type": "application/json",
   },
-  timeout: 10000, // 10 seconds timeout
+  timeout: 10000,
 });
 
-// Request interceptor (for adding auth tokens in future)
+// ================================
+// REQUEST INTERCEPTOR
+// ================================
+
 api.interceptors.request.use(
   (config) => {
-    console.log(`API Request: ${config.method.toUpperCase()} ${config.url}`);
+    console.log(
+      `API Request → ${config.method?.toUpperCase()} ${config.baseURL}${config.url}`
+    );
     return config;
   },
   (error) => {
-    console.error('API Request Error:', error);
+    console.error("API Request Error:", error);
     return Promise.reject(error);
   }
 );
 
-// Response interceptor (for handling errors globally)
+// ================================
+// RESPONSE INTERCEPTOR
+// ================================
+
 api.interceptors.response.use(
   (response) => {
-    console.log(`API Response: ${response.status} ${response.config.url}`);
+    console.log(`API Response ← ${response.status} ${response.config.url}`);
     return response;
   },
   (error) => {
-    console.error('API Response Error:', error);
+    console.error("API Response Error:", error);
+
     if (error.response) {
-      // Server responded with error status
-      console.error('Error Response:', error.response.data);
+      console.error("Server Error:", error.response.data);
     } else if (error.request) {
-      // Request made but no response received
-      console.error('No response received:', error.request);
+      console.error("No Response Received:", error.request);
     } else {
-      // Error in request setup
-      console.error('Error:', error.message);
+      console.error("Error:", error.message);
     }
+
     return Promise.reject(error);
   }
 );
 
-// Task API endpoints
+// ================================
+// TASK API ENDPOINTS
+// ================================
+
 export const taskAPI = {
-  /**
-   * Get all tasks
-   * @returns {Promise} Array of tasks
-   */
+  // Get all tasks
   getAllTasks: () => {
-    return api.get('/tasks');
+    return api.get("/tasks");
   },
 
-  /**
-   * Get task by ID
-   * @param {number} id - Task ID
-   * @returns {Promise} Task object
-   */
+  // Get task by ID
   getTaskById: (id) => {
     return api.get(`/tasks/${id}`);
   },
 
-  /**
-   * Create new task
-   * @param {Object} task - Task object {name, priority}
-   * @returns {Promise} Created task
-   */
+  // Create task
   createTask: (task) => {
-    return api.post('/tasks', task);
+    return api.post("/tasks", task);
   },
 
-  /**
-   * Update existing task
-   * @param {number} id - Task ID
-   * @param {Object} task - Updated task data
-   * @returns {Promise} Updated task
-   */
+  // Update task
   updateTask: (id, task) => {
     return api.put(`/tasks/${id}`, task);
   },
 
-  /**
-   * Delete task
-   * @param {number} id - Task ID
-   * @returns {Promise} Empty response
-   */
+  // Delete task
   deleteTask: (id) => {
     return api.delete(`/tasks/${id}`);
   },
 
-  /**
-   * Get paginated tasks
-   * @param {number} page - Page number (0-based)
-   * @param {number} size - Page size
-   * @param {string} sortBy - Sort field
-   * @param {string} direction - Sort direction (ASC/DESC)
-   * @returns {Promise} Page object with tasks
-   */
-  getPaginatedTasks: (page = 0, size = 10, sortBy = 'id', direction = 'ASC') => {
-    return api.get(`/tasks/paginated`, {
-      params: { page, size, sortBy, direction }
+  // Paginated tasks
+  getPaginatedTasks: (page = 0, size = 10, sortBy = "id", direction = "ASC") => {
+    return api.get("/tasks/paginated", {
+      params: { page, size, sortBy, direction },
     });
   },
 
-  /**
-   * Get tasks by status
-   * @param {string} status - Task status (QUEUED/IN_PROGRESS/COMPLETED/FAILED)
-   * @returns {Promise} Array of tasks
-   */
+  // Filter by status
   getTasksByStatus: (status) => {
     return api.get(`/tasks/status/${status}`);
   },
 
-  /**
-   * Get tasks by priority
-   * @param {string} priority - Task priority (HIGH/MEDIUM/LOW)
-   * @returns {Promise} Array of tasks
-   */
+  // Filter by priority
   getTasksByPriority: (priority) => {
     return api.get(`/tasks/priority/${priority}`);
   },
 
-  /**
-   * Search tasks by name
-   * @param {string} keyword - Search keyword
-   * @returns {Promise} Array of matching tasks
-   */
+  // Search tasks
   searchTasks: (keyword) => {
-    return api.get(`/tasks/search`, {
-      params: { keyword }
+    return api.get("/tasks/search", {
+      params: { keyword },
     });
   },
 
-  /**
-   * Get backend health status
-   * @returns {Promise} Health status
-   */
+  // Backend health
   getHealth: () => {
-    return axios.get('http://localhost:8080/actuator/health');
+    return axios.get(`${BACKEND_URL}/actuator/health`);
   },
 
-  /**
-   * Get cache statistics
-   * @returns {Promise} Cache stats
-   */
+  // Cache stats
   getCacheStats: () => {
-    return api.get('/cache/stats');
+    return api.get("/cache/stats");
   },
 
-  /**
-   * Clear cache
-   * @returns {Promise} Success message
-   */
+  // Clear cache
   clearCache: () => {
-    return api.delete('/cache/clear');
+    return api.delete("/cache/clear");
   },
 };
 

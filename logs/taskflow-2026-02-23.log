@@ -1,0 +1,75 @@
+2026-02-23 22:20:31 [main] INFO  com.taskflow.DemoApplicationTests - Starting DemoApplicationTests using Java 17.0.12 with PID 15616 (started by HP in C:\Users\HP\Desktop\taskflow\taskflow)
+2026-02-23 22:20:31 [main] DEBUG com.taskflow.DemoApplicationTests - Running with Spring Boot v3.5.10, Spring v6.2.15
+2026-02-23 22:20:31 [main] INFO  com.taskflow.DemoApplicationTests - No active profile set, falling back to 1 default profile: "default"
+2026-02-23 22:20:35 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-23 22:20:36 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@290c266c
+2026-02-23 22:20:36 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-23 22:20:40 [main] INFO  com.taskflow.DemoApplicationTests - Started DemoApplicationTests in 9.221 seconds (process running for 11.204)
+2026-02-23 22:20:41 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2026-02-23 22:20:41 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2026-02-23 23:41:23 [main] INFO  com.taskflow.DemoApplication - Starting DemoApplication using Java 17.0.12 with PID 18644 (C:\Users\HP\Desktop\taskflow\taskflow\target\classes started by HP in C:\Users\HP\Desktop\taskflow\taskflow)
+2026-02-23 23:41:23 [main] DEBUG com.taskflow.DemoApplication - Running with Spring Boot v3.5.10, Spring v6.2.15
+2026-02-23 23:41:23 [main] INFO  com.taskflow.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-23 23:41:28 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-23 23:41:28 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-23 23:41:28 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-23 23:41:28 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-23 23:41:30 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-23 23:41:31 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@173a5fad
+2026-02-23 23:41:31 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-23 23:41:38 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-23 23:41:38 [main] INFO  com.taskflow.DemoApplication - Started DemoApplication in 15.853 seconds (process running for 16.413)
+2026-02-23 23:42:02 [http-nio-8080-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-23 23:42:02 [http-nio-8080-exec-1] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Send welcome email
+2026-02-23 23:42:02 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Send welcome email
+2026-02-23 23:42:02 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 17
+2026-02-23 23:42:02 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for all tasks due to new task creation
+2026-02-23 23:42:18 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Generate monthly report
+2026-02-23 23:42:18 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Generate monthly report
+2026-02-23 23:42:18 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 18
+2026-02-23 23:42:18 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for all tasks due to new task creation
+2026-02-23 23:42:29 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Backup database
+2026-02-23 23:42:29 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Backup database
+2026-02-23 23:42:29 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 19
+2026-02-23 23:42:29 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for all tasks due to new task creation
+2026-02-23 23:42:35 [http-nio-8080-exec-3] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Update documentation
+2026-02-23 23:42:35 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Update documentation
+2026-02-23 23:42:35 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 20
+2026-02-23 23:42:35 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for all tasks due to new task creation
+2026-02-23 23:42:43 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Deploy to production
+2026-02-23 23:42:43 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Deploy to production
+2026-02-23 23:42:43 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 21
+2026-02-23 23:42:43 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for all tasks due to new task creation
+2026-02-23 23:44:39 [http-nio-8080-exec-6] INFO  c.taskflow.controller.TaskController - GET /api/tasks/1 - Fetching task
+2026-02-23 23:44:39 [http-nio-8080-exec-6] DEBUG c.taskflow.service.TaskServiceImpl - Fetching task with ID: 1 (checking cache first)
+2026-02-23 23:44:39 [http-nio-8080-exec-6] WARN  c.taskflow.service.TaskServiceImpl - Task not found with ID: 1
+2026-02-23 23:45:10 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-23 23:45:10 [http-nio-8080-exec-8] DEBUG c.taskflow.service.TaskServiceImpl - Fetching task with ID: 17 (checking cache first)
+2026-02-23 23:45:10 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Task found in database: Send welcome email
+2026-02-23 23:45:10 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Caching task with key: 17
+2026-02-23 23:45:28 [http-nio-8080-exec-9] INFO  c.taskflow.controller.TaskController - GET /api/tasks/1 - Fetching task
+2026-02-23 23:45:28 [http-nio-8080-exec-9] DEBUG c.taskflow.service.TaskServiceImpl - Fetching task with ID: 1 (checking cache first)
+2026-02-23 23:45:28 [http-nio-8080-exec-9] WARN  c.taskflow.service.TaskServiceImpl - Task not found with ID: 1
+2026-02-23 23:45:32 [http-nio-8080-exec-10] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-23 23:45:40 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-23 23:49:55 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - PUT /api/tasks/7 - Updating task
+2026-02-23 23:49:55 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Updating task with ID: 7
+2026-02-23 23:49:55 [http-nio-8080-exec-4] DEBUG c.taskflow.service.TaskServiceImpl - Old task name: Task 1, New task name: Updated task name
+2026-02-23 23:49:55 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Task updated successfully with ID: 7
+2026-02-23 23:49:55 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Cache updated for task: 7
+2026-02-23 23:49:55 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for 'all' tasks list
+2026-02-23 23:50:27 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - PUT /api/tasks/7 - Updating task
+2026-02-23 23:50:27 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Updating task with ID: 7
+2026-02-23 23:50:27 [http-nio-8080-exec-5] DEBUG c.taskflow.service.TaskServiceImpl - Old task name: Updated task name, New task name: Updated task name
+2026-02-23 23:50:27 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Task updated successfully with ID: 7
+2026-02-23 23:50:27 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Cache updated for task: 7
+2026-02-23 23:50:27 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Cache evicted for 'all' tasks list
+2026-02-23 23:53:19 [http-nio-8080-exec-6] INFO  c.taskflow.controller.TaskController - GET /api/tasks - Fetching all tasks
+2026-02-23 23:53:19 [http-nio-8080-exec-6] DEBUG c.taskflow.service.TaskServiceImpl - Fetching all tasks from database (cache miss)
+2026-02-23 23:53:19 [http-nio-8080-exec-6] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 19 tasks from database
+2026-02-23 23:53:19 [http-nio-8080-exec-6] INFO  c.taskflow.service.TaskServiceImpl - Caching all tasks with key: 'all'
+2026-02-23 23:55:17 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task
+2026-02-23 23:55:17 [http-nio-8080-exec-8] DEBUG c.taskflow.service.TaskServiceImpl - Fetching task with ID: 17 (checking cache first)
+2026-02-23 23:55:17 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Task found in database: Send welcome email
+2026-02-23 23:55:17 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Caching task with key: 17
+2026-02-23 23:55:25 [http-nio-8080-exec-9] INFO  c.taskflow.controller.TaskController - GET /api/tasks/17 - Fetching task

@@ -1,0 +1,89 @@
+2026-02-14 09:16:11 [main] INFO  com.taskflow.DemoApplication - Starting DemoApplication using Java 17.0.12 with PID 24536 (C:\Users\HP\Desktop\taskflow\taskflow\target\classes started by HP in C:\Users\HP\Desktop\taskflow\taskflow)
+2026-02-14 09:16:11 [main] DEBUG com.taskflow.DemoApplication - Running with Spring Boot v3.5.10, Spring v6.2.15
+2026-02-14 09:16:11 [main] INFO  com.taskflow.DemoApplication - No active profile set, falling back to 1 default profile: "default"
+2026-02-14 09:16:12 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-8080"]
+2026-02-14 09:16:12 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2026-02-14 09:16:12 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.50]
+2026-02-14 09:16:12 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-02-14 09:16:12 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2026-02-14 09:16:13 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@27d73d22
+2026-02-14 09:16:13 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2026-02-14 09:16:16 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-8080"]
+2026-02-14 09:16:16 [main] INFO  com.taskflow.DemoApplication - Started DemoApplication in 5.614 seconds (process running for 5.888)
+2026-02-14 09:20:17 [http-nio-8080-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-02-14 09:20:18 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 1
+2026-02-14 09:20:18 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 1
+2026-02-14 09:20:18 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 7
+2026-02-14 09:20:29 [http-nio-8080-exec-1] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 2
+2026-02-14 09:20:29 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 2
+2026-02-14 09:20:29 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 8
+2026-02-14 09:20:45 [http-nio-8080-exec-3] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 3
+2026-02-14 09:20:45 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 3
+2026-02-14 09:20:45 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 9
+2026-02-14 09:21:03 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 4
+2026-02-14 09:21:03 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 4
+2026-02-14 09:21:03 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 10
+2026-02-14 09:21:25 [http-nio-8080-exec-6] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 5
+2026-02-14 09:21:25 [http-nio-8080-exec-6] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 5
+2026-02-14 09:21:25 [http-nio-8080-exec-6] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 11
+2026-02-14 09:22:21 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 0, Size: 2, SortBy: id, Direction: ASC
+2026-02-14 09:22:21 [http-nio-8080-exec-7] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 0, Size: 2
+2026-02-14 09:22:22 [http-nio-8080-exec-7] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 2 tasks out of 9 total
+2026-02-14 09:22:22 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - Returning 2 tasks out of 9 total
+2026-02-14 09:23:57 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 1, Size: 2, SortBy: id, Direction: ASC
+2026-02-14 09:23:57 [http-nio-8080-exec-8] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 1, Size: 2
+2026-02-14 09:23:57 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 2 tasks out of 9 total
+2026-02-14 09:23:57 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - Returning 2 tasks out of 9 total
+2026-02-14 09:26:12 [http-nio-8080-exec-9] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 0, Size: 2, SortBy: priority, Direction: DESC
+2026-02-14 09:26:12 [http-nio-8080-exec-9] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 0, Size: 2
+2026-02-14 09:26:12 [http-nio-8080-exec-9] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 2 tasks out of 9 total
+2026-02-14 09:26:12 [http-nio-8080-exec-9] INFO  c.taskflow.controller.TaskController - Returning 2 tasks out of 9 total
+2026-02-14 09:46:19 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 1
+2026-02-14 09:46:19 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 1
+2026-02-14 09:46:19 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 12
+2026-02-14 09:46:45 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 2
+2026-02-14 09:46:45 [http-nio-8080-exec-7] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 2
+2026-02-14 09:46:45 [http-nio-8080-exec-7] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 13
+2026-02-14 09:46:52 [http-nio-8080-exec-9] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 3
+2026-02-14 09:46:52 [http-nio-8080-exec-9] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 3
+2026-02-14 09:46:52 [http-nio-8080-exec-9] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 14
+2026-02-14 09:46:57 [http-nio-8080-exec-2] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 4
+2026-02-14 09:46:57 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 4
+2026-02-14 09:46:57 [http-nio-8080-exec-2] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 15
+2026-02-14 09:47:03 [http-nio-8080-exec-3] INFO  c.taskflow.controller.TaskController - POST /api/tasks - Creating task: Task 5
+2026-02-14 09:47:03 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Creating new task with name: Task 5
+2026-02-14 09:47:03 [http-nio-8080-exec-3] INFO  c.taskflow.service.TaskServiceImpl - Task created successfully with ID: 16
+2026-02-14 09:47:09 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 0, Size: 2, SortBy: id, Direction: ASC
+2026-02-14 09:47:09 [http-nio-8080-exec-5] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 0, Size: 2
+2026-02-14 09:47:09 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 2 tasks out of 14 total
+2026-02-14 09:47:09 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - Returning 2 tasks out of 14 total
+2026-02-14 09:47:16 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 1, Size: 2, SortBy: id, Direction: ASC
+2026-02-14 09:47:16 [http-nio-8080-exec-7] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 1, Size: 2
+2026-02-14 09:47:16 [http-nio-8080-exec-7] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 2 tasks out of 14 total
+2026-02-14 09:47:16 [http-nio-8080-exec-7] INFO  c.taskflow.controller.TaskController - Returning 2 tasks out of 14 total
+2026-02-14 09:47:24 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - GET /api/tasks/search?keyword=email - Searching tasks
+2026-02-14 09:47:24 [http-nio-8080-exec-8] DEBUG c.taskflow.service.TaskServiceImpl - Searching tasks with keyword: email
+2026-02-14 09:47:24 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Found 2 tasks matching keyword: email
+2026-02-14 09:47:31 [http-nio-8080-exec-10] INFO  c.taskflow.controller.TaskController - GET /api/tasks/paginated - Page: 0, Size: 10, SortBy: priority, Direction: DESC
+2026-02-14 09:47:31 [http-nio-8080-exec-10] DEBUG c.taskflow.service.TaskServiceImpl - Fetching paginated tasks - Page: 0, Size: 10
+2026-02-14 09:47:31 [http-nio-8080-exec-10] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 10 tasks out of 14 total
+2026-02-14 09:47:31 [http-nio-8080-exec-10] INFO  c.taskflow.controller.TaskController - Returning 10 tasks out of 14 total
+2026-02-14 09:47:40 [http-nio-8080-exec-1] INFO  c.taskflow.controller.TaskController - GET /api/tasks/status/QUEUED - Fetching tasks by status
+2026-02-14 09:47:40 [http-nio-8080-exec-1] DEBUG c.taskflow.service.TaskServiceImpl - Fetching tasks with status: QUEUED
+2026-02-14 09:47:40 [http-nio-8080-exec-1] INFO  c.taskflow.service.TaskServiceImpl - Found 13 tasks with status: QUEUED
+2026-02-14 09:49:23 [http-nio-8080-exec-4] INFO  c.taskflow.controller.TaskController - PUT /api/tasks/1 - Updating task
+2026-02-14 09:49:23 [http-nio-8080-exec-4] INFO  c.taskflow.service.TaskServiceImpl - Updating task with ID: 1
+2026-02-14 09:49:23 [http-nio-8080-exec-4] WARN  c.taskflow.service.TaskServiceImpl - Task not found for update with ID: 1
+2026-02-14 09:49:35 [http-nio-8080-exec-5] INFO  c.taskflow.controller.TaskController - PUT /api/tasks/1 - Updating task
+2026-02-14 09:49:35 [http-nio-8080-exec-5] INFO  c.taskflow.service.TaskServiceImpl - Updating task with ID: 1
+2026-02-14 09:49:35 [http-nio-8080-exec-5] WARN  c.taskflow.service.TaskServiceImpl - Task not found for update with ID: 1
+2026-02-14 09:50:07 [http-nio-8080-exec-6] INFO  c.taskflow.controller.TaskController - GET /api/tasks - Fetching all tasks
+2026-02-14 09:50:07 [http-nio-8080-exec-6] DEBUG c.taskflow.service.TaskServiceImpl - Fetching all tasks from database
+2026-02-14 09:50:08 [http-nio-8080-exec-6] INFO  c.taskflow.service.TaskServiceImpl - Retrieved 14 tasks
+2026-02-14 09:50:40 [http-nio-8080-exec-8] INFO  c.taskflow.controller.TaskController - PUT /api/tasks/3 - Updating task
+2026-02-14 09:50:40 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Updating task with ID: 3
+2026-02-14 09:50:40 [http-nio-8080-exec-8] DEBUG c.taskflow.service.TaskServiceImpl - Old task name: Send welcome email, New task name: Updated Welcome Email
+2026-02-14 09:50:40 [http-nio-8080-exec-8] INFO  c.taskflow.service.TaskServiceImpl - Task updated successfully with ID: 3
+2026-02-14 09:50:56 [http-nio-8080-exec-10] INFO  c.taskflow.controller.TaskController - GET /api/tasks/search?keyword=Task - Searching tasks
+2026-02-14 09:50:56 [http-nio-8080-exec-10] DEBUG c.taskflow.service.TaskServiceImpl - Searching tasks with keyword: Task
+2026-02-14 09:50:56 [http-nio-8080-exec-10] INFO  c.taskflow.service.TaskServiceImpl - Found 12 tasks matching keyword: Task
